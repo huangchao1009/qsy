@@ -78,7 +78,7 @@ def major_transform(x):
         return 0
 
 def need_height(x):
-    x=map(int,x)
+    x=list(map(int,x))
     if len(x)==0:
         return -1
     for i in x:
@@ -87,7 +87,7 @@ def need_height(x):
     return -1
 
 def need_age(x):
-    x=map(int,x)
+    x=list(map(int,x))
     if len(x)==0:
         return ""
     for i in x:
@@ -119,7 +119,7 @@ def place_match(x,y):
     else:
         return 1
 def parse_hanzi(x):
-    res=re.findall("[^A-Za-z0-9~!#$%&\'()*+,-./:;<=>?，@[\\]^_`{|} ,]", x.decode("utf-8"))
+    res=re.findall("[^A-Za-z0-9~!#$%&\'()*+,-./:;<=>?，@[\\]^_`{|} ,]", x)
     return "".join(res)
 
 def load_dic(x):   #载入腾讯的词向量文件
@@ -200,7 +200,7 @@ def first_step():
     test.rename(columns={"uuid":"uuid_x"},inplace=True)
     test.rename(columns={"uuid2":"uuid_y"},inplace=True)
     test.to_csv("./test_hc.csv",index=False,encoding="utf-8")
-
+    print("1st done!")
 def second_step():
     test1=pd.read_csv("./test_hc.csv")
 
@@ -240,7 +240,7 @@ def second_step():
 
 # M_data=data[data.sex=="male"]   #69
 # F_data=data[data.sex=="female"] #75
-first_step()
+#first_step()
 #second_step()
 print ("done!")
 
